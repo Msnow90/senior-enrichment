@@ -12,14 +12,19 @@ const SingleCampus = (props) => {
 
   console.log('stuff')
   return (
-    <div>
-      <img src={campus.imgUrl} />
+    <div className="container text-align single-student-form">
+      <img className="single-campus-img" src={campus.imgUrl} />
       <h1>{campus.name}</h1>
+      <h3>Campus Bio:</h3>
+      <p>{campus.bio}</p>
+      <Link to={`/campuses/${campus.id}/update`}>
+        <button className="btn btn-md btn-success">Update Campus</button>
+      </Link>
       {
         props.students.map(student => {
           if (student.campusId === campus.id) {
             return (
-              <div>
+              <div key={student.id}>
                 <h3>Student Name:</h3>
                 <Link to={`/students/${student.id}`}><p>{student.name}</p></Link>
               </div>

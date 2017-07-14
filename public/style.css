@@ -1,0 +1,57 @@
+
+.studentContainer {
+  border: 2px solid black;
+  text-align:center;
+  padding:10px;
+}
+.text-align {
+  text-align:center;
+}
+.margin-center {
+  margin: 0 auto;
+}
+
+.span-delete {
+  border-radius: 50%;
+  margin-left:20px;
+}
+
+.span-name-label {
+  margin-right:20px;
+  font-size:20px;
+}
+
+.single-student-form {
+  background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('http://static.lakana.com/media.fox29.com/photo/2017/03/12/generic%20body%20found%20ap_1489357073753_2873870_ver1.0_640_360.png') no-repeat center center;
+  background-size: cover;
+  color: white;
+}
+
+.single-campus-img {
+  width:50%;
+  height:auto;
+}
+
+.nav-btn {
+  height:50px;
+  margin: 0 20px;
+  line-height:50px;
+  vertical-align: auto;
+  background-color:black;
+  color:white;
+}
+
+.navbar.navbar-default {
+  text-align:center;
+  background-color: black;
+  border:1px solid black;
+}
+
+#jumbotron-campus {
+  background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('http://www.collegerank.net/wp-content/uploads/2015/08/morehouse-college-quad.jpg') no-repeat center center;
+  background-size: cover;
+  height:500px;
+  color:white;
+  text-align:center;
+  padding-top:80px;
+}

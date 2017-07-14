@@ -12,10 +12,10 @@ const Campuses = (props) => {
       {
         props.campuses.map(campus => {
           return (
-            <div key={campus.id}>
-              <Link to={`/campuses/${campus.id}`}>To Campus</Link>
-              <h1>{campus.name}</h1>
-              <button onClick={() => props.deleteCampus(campus.id)} className='btn btn-sm btn-danger'>DELETE ME</button>
+           <div className="col-lg-4 col-md-6 col-xs-6 studentContainer" key={campus.id}>
+            <span className="span-name-label">Campus Name: </span><p>{campus.name}<span onClick={() => props.deleteCampus(campus.id)} className='btn btn-sm btn-danger span-delete'>X</span></p>
+            <Link to={`/campuses/${campus.id}`}><button className="btn btn-md btn-info">See campus info</button></Link>
+
             </div>
           )
         })

@@ -1,9 +1,12 @@
 import axios from 'axios';
 
+import { getStudents } from './students';
+
 // ACTIONS
 export const GET_CAMPUSES = 'GET_CAMPUSES';
 export const SUBMIT_CAMPUS = 'SUBMIT_CAMPUS';
 export const DELETED_CAMPUS = 'DELETED_CAMPUS';
+export const UPDATED_CAMPUS = 'UPDATED_CAMPUS';
 
 
 // ACTION CREATORS
@@ -28,6 +31,12 @@ export const removedCampus = (campusId) => {
   }
 }
 
+export const updatedCampus = (campus) => {
+  return {
+    type: UPDATED_CAMPUS,
+    campus
+  }
+}
 
 // REDUCER
 const campuses = [];
@@ -47,6 +56,12 @@ export default (campuses = [], action) => {
         return campus.id !== action.campusId
       })
 
+    case UPDATED_CAMPUS:
+      return campuses.map(campus => {
+        if (campus.id === action.campus.id) return Object.assign({}, action.campus);
+        return campus;
+      })
+
     default:
       return campuses;
   }
@@ -64,9 +79,9 @@ export const getCampuses = () => {
   }
 }
 
-export const submitCampus = (campusName) => {
+export const submitCampus = (target) => {
   return (dispatch) => {
-    return axios.post('/api/campuses', {name: campusName})
+    return axios.post('/api/campuses', {name: target.campusName.value, bio: target.bio.value})
     .then(result => result.data)
     .then(savedCampus => dispatch(retrievedCampus(savedCampus)));
   }
@@ -75,6 +90,17 @@ export const submitCampus = (campusName) => {
 export const deleteCampus = (campusId) => {
   return (dispatch) => {
     return axios.delete(`/api/campuses/${campusId}`)
-    .then(result => dispatch(removedCampus(result.data)))
+    .then(result => {
+      console.log(result.data);
+      dispatch(removedCampus(result.data));
+      dispatch(getStudents());
+    })
   }
 }
+
+// export const updateCampus = (campus) => {
+//   return (dispatch) => {
+//     return axios.put(`/api/campuses/${campus.id}`)
+//     .then(result => dispatch(updatedCampus(result.data)))
+//   }
+// }

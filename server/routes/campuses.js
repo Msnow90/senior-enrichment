@@ -27,12 +27,15 @@ api.get('/:campusId', (req, res) => {
 })
 
 api.put('/:campusId', (req, res) => {
+  console.log('wtf??!?!')
   Campus.update(req.body, {
     where: {
       id: req.params.campusId
-    }
+    },
+    returning: true,
+    plain: true
   })
-  .then(() => res.sendStatus(200))
+  .then((result) => res.json(result[1]))
   .catch(err => errorHandler(err, res))
 })
 

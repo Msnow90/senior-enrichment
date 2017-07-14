@@ -19,6 +19,10 @@ module.exports = db.define('campus', {
   },
   imgUrl: {
     type: Sequelize.STRING
+  },
+  bio: {
+    type: Sequelize.STRING,
+    allowNull: false
   }
 }, {
   hooks: {

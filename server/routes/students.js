@@ -9,8 +9,6 @@ api.get('/', (req, res) => {
 })
 
 api.post('/', (req, res) => {
-  console.log('test')
-  console.log(req.body);
   Student.create(req.body)
   .then(result => res.json(result))
   .catch(err => errorHandler(err, res))
@@ -30,9 +28,14 @@ api.put('/:studentId', (req, res) => {
   Student.update(req.body, {
     where: {
       id: req.params.studentId
-    }
+    },
+    returning: true,
+    plain: true
   })
-  .then(() => res.sendStatus(200))
+  .then((result) => {
+    console.log('herro??', result[1])
+    res.json(result[1])
+  })
   .catch(err => errorHandler(err, res))
 })
 

@@ -5,10 +5,13 @@ import { connect } from 'react-redux';
 import { getStudents } from '../reducers/students';
 import { getCampuses } from '../reducers/campuses';
 
+import Home from './Home';
 import Students from './Students';
 import Campuses from './Campuses';
 import SingleCampus from './SingleCampus';
 import SingleStudent from './SingleStudent';
+import UpdateStudent from './UpdateStudent';
+import UpdateCampus from './UpdateCampus';
 
 class Root extends Component {
   componentDidMount() {
@@ -20,10 +23,15 @@ class Root extends Component {
       <Router>
         <div>
           <nav className="navbar navbar-default">
-            <Link to="/students">Get ze fucking students</Link>
-            <Link to="/campuses">Get ze fucking campuses</Link>
+            <Link to="/"><span className="nav-btn">Home</span></Link>
+            <Link to="/students"><span className="nav-btn">Get ze fucking students</span></Link>
+            <Link to="/campuses"><span className="nav-btn">Get ze fucking campuses</span></Link>
           </nav>
           <Switch>
+            <Route
+              exact
+              path="/"
+              render={() => <Home campuses={this.props.campuses}/>} />
             <Route
               exact
               path="/students"
@@ -40,6 +48,14 @@ class Root extends Component {
               exact
               path="/students/:studentId"
               component={SingleStudent} />
+            <Route
+              exact
+              path="/students/:studentId/update"
+              component={UpdateStudent} />
+            <Route
+              exact
+              path="/campuses/:campusId/update"
+              component={UpdateCampus} />
           </Switch>
         </div>
       </Router>
